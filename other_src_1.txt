@@ -1,0 +1,139 @@
+	/*
+					//====================== Google YouTube ªºÃìµ²=======================			
+												if( web_action == 2 )	
+												{
+													if( !Touchlink_url.isEmpty() )
+													{	
+														
+												            
+														 String flvcdurl2 = "http://www.flvcd.com/parse.php?kw=" + Touchlink_url + "&flag=&format="; 
+							                             
+												           HttpClient client2 = new DefaultHttpClient();
+												           HttpGet request2 = new HttpGet( flvcdurl2 );
+												           HttpResponse response2=null;
+															try {
+																response2 = client2.execute(request2);
+															} catch (ClientProtocolException e1) {
+																// TODO Auto-generated catch block
+																e1.printStackTrace();
+															} catch (IOException e1) {
+																// TODO Auto-generated catch block
+																e1.printStackTrace();
+															}
+															//String Youku_url = response1.toString();
+															HttpEntity yy2 = response2.getEntity();
+															String str2 = null;
+															try {
+																str2 = EntityUtils.toString(yy2);
+															//	str1 = "";
+															} catch (ParseException e1) {
+																// TODO Auto-generated catch block
+																e1.printStackTrace();
+															} catch (IOException e1) {
+																// TODO Auto-generated catch block
+																e1.printStackTrace();
+															}
+															Pattern pat2 = Pattern.compile("href=\"(.+?)\" target=\"_blank\" class=\"link\"");
+													        Matcher m2 = pat2.matcher( str2 );
+													            if(m2.find()) { 
+													          	   r1 = m2.group(1);
+													                 
+													          	// Intent it = new Intent(Intent.ACTION_VIEW);
+														     	 //  Uri uri = Uri.parse(  r1  );
+														     	  // it.setDataAndType(uri , "video/*");
+														     	  // startActivity(it);
+														     	 
+													          	 //========================================================
+															        new Thread() {  
+															            public void run() {  
+															               	cs = new ClientSocket( pad_str_ipaddr ,  PORT_NUMBER );  
+															            	cs.createConnection();  
+															                 if( cs != null )
+															                 {
+																                   try {
+																                	      SendMsg( cs, r1 );
+																                	    	
+																						} catch (IOException e) {
+																							// TODO Auto-generated catch block
+																							e.printStackTrace();
+																						} 
+															              	  }  
+															              }  
+															         }.start();
+													             }
+													             else
+													             {
+													            	 Pattern pat3 = Pattern.compile("href=\"(.+?)\" target=\"_blank\" onclick=");
+																     Matcher m3 = pat3.matcher( str2 );
+																     if(m3.find()) { 
+															          	   r1 = m3.group(1);
+															                 
+															          //	 Intent it = new Intent(Intent.ACTION_VIEW);
+																     //	   Uri uri = Uri.parse(  r1  );
+																     //	   it.setDataAndType(uri , "video/*");
+																     //	   startActivity(it);
+																       
+															          	
+															          	//========================================================
+																	        new Thread() {  
+																	            public void run() {  
+																	               	cs = new ClientSocket( pad_str_ipaddr ,  PORT_NUMBER );  
+																	            	cs.createConnection();  
+																	                 if( cs != null )
+																	                 {
+																		                   try {
+																		                	      SendMsg( cs, r1 );
+																		                	    	
+																								} catch (IOException e) {
+																									// TODO Auto-generated catch block
+																									e.printStackTrace();
+																								} 
+																	              	  } // if 
+																	              } // run()  
+																	         }.start();
+																	         
+															             } //if(m2.find()
+													             } // else
+											
+													} // if( !Touchlink_url.isEmpty(
+													else
+													{
+													// get the URL of the touched anchor tag
+													WebView.HitTestResult hr = ((WebView) arg1)
+															.getHitTestResult();
+													String str = hr.getExtra(); // check if it is the
+																				// URL of the thumbnail
+																				// of the video
+													int i =  hr.getType();
+														switch(hr.getType()) {
+														
+																case WebView.HitTestResult.SRC_ANCHOR_TYPE:
+																	str = "";
+																	break;
+																case WebView.HitTestResult.ANCHOR_TYPE:
+																	str = "";
+																	break;
+																case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
+																	 String mSelectedUri = null;
+																	 WebView wv = (WebView)arg1;
+							
+																	mSelectedUri = wv.getHitTestResult().getExtra();
+																	String ss = Uri.parse(mSelectedUri).getHost();
+																	//if(!Uri.parse(mSelectedUri).getHost().equals("habrahabr.ru")) 
+																	//	return false;
+							
+																	str = "";
+																	break;
+																case WebView.HitTestResult.IMAGE_ANCHOR_TYPE :
+																	str = "";
+																	break;	
+																case WebView.HitTestResult.IMAGE_TYPE :
+																	str = "";
+																	break;	
+														} // switch
+													} //else
+											     
+											     
+											     
+								             } // else
+									       */

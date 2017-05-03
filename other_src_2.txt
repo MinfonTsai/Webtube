@@ -1,0 +1,206 @@
+
+													// which looks like
+													// http://i.ytimg.com/vi/<VIDEOID>/hqdefault.jpg?w=160&h=96&sigh=7exXMTRY7yiZm4hS4V_f9uVO-GU
+													if (str1 != null
+															&& str1.startsWith("http://i.ytimg.com/vi/")) {
+														// String videoId = str.split("\\/")[4] +
+														// "&feature=player_detailpage";
+														// Intent i = new Intent(Intent.ACTION_VIEW,
+														// Uri.parse("http://www.youtube.com/watch?v="
+														// +videoId));
+														// arg1.getContext().startActivity(i);
+
+														YuTu_url = kej_tw1 + str1.split("\\/")[4]
+																+ kej_tw2;
+														YuTu_file = get_real_youtube_filelink(YuTu_url);
+														r1 = "";
+
+														//Intent it = new Intent(Intent.ACTION_VIEW);
+														//Uri uri = Uri.parse(YuTu_file);
+														//it.setDataAndType(uri, "video/*");
+														//startActivity(it);
+
+														 //========================================================
+												        new Thread() {  
+												            public void run() {  
+												               	cs = new ClientSocket( pad_str_ipaddr ,  PORT_NUMBER );  
+												            	cs.createConnection();  
+												                 if( cs != null )
+												                 {
+													                   try {
+													                	      SendMsg( cs, YuTu_file );
+													                	    	
+																			} catch (IOException e) {
+																				// TODO Auto-generated catch block
+																				e.printStackTrace();
+																			} 
+												              	  }  
+												              }  
+												         }.start();
+												       //========================================================
+												         
+														return true;
+													} else if (str1 != null
+															&& str1.startsWith("http://i.ytimg.com/vt?cids=")) {
+														Pattern pat3 = Pattern
+																.compile("vt\\?cids=(.+?),");
+														Matcher m3 = pat3.matcher(str1);
+														if (m3.find()) {
+															r1 = m3.group(1);
+															YuTu_url = kej_tw1 + r1 + kej_tw2;
+															YuTu_file = get_real_youtube_filelink(YuTu_url);
+															r1 = "";
+
+															//Intent it = new Intent(Intent.ACTION_VIEW);
+															//Uri uri = Uri.parse(YuTu_file);
+															//it.setDataAndType(uri, "video/*");
+															//startActivity(it);
+															 //========================================================
+													        new Thread() {  
+													            public void run() {  
+													               	cs = new ClientSocket( pad_str_ipaddr ,  PORT_NUMBER );  
+													            	cs.createConnection();  
+													                 if( cs != null )
+													                 {
+														                   try {
+														                	      SendMsg( cs, YuTu_file );
+														                	    	
+																				} catch (IOException e) {
+																					// TODO Auto-generated catch block
+																					e.printStackTrace();
+																				} 
+													              	  }  
+													              }  
+													         }.start();
+													       //========================================================
+
+														}
+													} 
+													else if (str1 != null
+															&& str1.startsWith("http://m.youtube.com/#/watch?")) 
+													{
+														Pattern pat4 = Pattern.compile("v=(.+?)$");
+														Matcher m4 = pat4.matcher(str1);
+														
+													
+														if (m4.find()) {
+															r1 = m4.group(1);
+															YuTu_url = kej_tw1 + r1 + kej_tw2;
+															YuTu_file = get_real_youtube_filelink(YuTu_url);
+															r1 = "";
+
+														//	Intent it = new Intent(Intent.ACTION_VIEW);
+														//	Uri uri = Uri.parse(YuTu_file);
+														//	it.setDataAndType(uri, "video/*");
+														//	startActivity(it);
+
+															
+													        //========================================================
+													        new Thread() {  
+													            public void run() {  
+													               	cs = new ClientSocket( pad_str_ipaddr ,  PORT_NUMBER );  
+													            	cs.createConnection();  
+													                 if( cs != null )
+													                 {
+														                   try {
+														                	      SendMsg( cs, YuTu_file );
+														                	    	
+																				} catch (IOException e) {
+																					// TODO Auto-generated catch block
+																					e.printStackTrace();
+																				} 
+													              	  }  
+													              }  
+													         }.start();
+													       //========================================================
+														}
+														
+															
+													}
+													else if (str1 != null
+															&& str1.startsWith("http://m.youtube.com/results?q=")) 
+													{
+														Pattern pat4 = Pattern.compile("\\?v=(.+?)$");
+														Matcher m3 = pat4.matcher(str1);
+														if (m3.find()) {
+															r1 = m3.group(1);
+															YuTu_url = kej_tw1 + r1 + kej_tw2;
+															YuTu_file = get_real_youtube_filelink(YuTu_url);
+															r1 = "";
+
+														//	Intent it = new Intent(Intent.ACTION_VIEW);
+														//	Uri uri = Uri.parse(YuTu_file);
+														//	it.setDataAndType(uri, "video/*");
+														//	startActivity(it);
+
+															
+													        //========================================================
+													        new Thread() {  
+													            public void run() {  
+													               	cs = new ClientSocket( pad_str_ipaddr ,  PORT_NUMBER );  
+													            	cs.createConnection();  
+													                 if( cs != null )
+													                 {
+														                   try {
+														                	      SendMsg( cs, YuTu_file );
+														                	    	
+																				} catch (IOException e) {
+																					// TODO Auto-generated catch block
+																					e.printStackTrace();
+																				} 
+													              	  }  
+													              }  
+													         }.start();
+													       //========================================================
+															
+															
+														}
+													}
+													else if (str1 != null
+														//	&& str.startsWith("http://v.youku.com/")) 
+															&& str1.startsWith("http://g3.ykimg.com/")) 	
+													{
+														//   String _decurl3 = "http://v.youku.com/v_show/id_XNDI3MzkyODk2.html";
+													        //   String _decurl4 = "http://video.sina.com.cn/v/b/76194071-2036021381.html";
+													           String url2 = "http://www.flvcd.com/parse.php?kw=" + str1 + "&flag=&format="; 
+													                             
+													           HttpClient client2 = new DefaultHttpClient();
+													           HttpGet request2 = new HttpGet( url2 );
+													           HttpResponse response2=null;
+																try {
+																	response2 = client2.execute(request2);
+																} catch (ClientProtocolException e1) {
+																	// TODO Auto-generated catch block
+																	e1.printStackTrace();
+																} catch (IOException e1) {
+																	// TODO Auto-generated catch block
+																	e1.printStackTrace();
+																}
+																//String Youku_url = response1.toString();
+																HttpEntity yy2 = response2.getEntity();
+																String str2 = null;
+																try {
+																	str2 = EntityUtils.toString(yy2);
+																} catch (ParseException e1) {
+																	// TODO Auto-generated catch block
+																	e1.printStackTrace();
+																} catch (IOException e1) {
+																	// TODO Auto-generated catch block
+																	e1.printStackTrace();
+																}
+															
+																Pattern pat4 = Pattern.compile("href=\"(.+?)\" target=\"_blank\" class=\"link\"");
+														        Matcher m4 = pat4.matcher( str2 );
+														            if(m4.find()) { 
+														          	   r1 = m4.group(1);
+														                 
+														          	 Intent it = new Intent(Intent.ACTION_VIEW);
+															     	   Uri uri = Uri.parse(  r1  );
+															     	   it.setDataAndType(uri , "video/*");
+															     	   startActivity(it);
+															     	   
+														             } 
+														             
+														       //  	   return;
+												//	}
+													} // else  if( !Touchlink_url.isEmpty() )
